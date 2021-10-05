@@ -13,4 +13,4 @@ debug = DebugToolbarExtension(app)
 
 app.route('/')
 def index():
-    pass
+    return render_template('index.html')
