@@ -1,6 +1,7 @@
 const $body = $('body');
 const $message = $('#user-message');
 const $score = $('#score');
+const $form = $('#word-form');
 let timeUp = false;
 let score = 0;
 
@@ -30,14 +31,18 @@ const handleGuess = async (e) => {
 	} else {
 		$message.text(`${word} is not on the board.`);
 	}
+	$form.trigger('reset');
 
 	// result = 'ok' or 'not-word' or 'not-on-board'
 };
 
-setTimeout(() => {
+const gameOver = () => {
 	timeUp = true;
-	console.log('setTimout');
-}, 60000);
+	console.log('Game Over');
+	$message.text(`Game over! Your score is ${score}`);
+};
+
+setTimeout(gameOver, 60000);
 
 $body.on('click', '#guessBtn', handleGuess);
 
