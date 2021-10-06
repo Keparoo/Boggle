@@ -1,32 +1,45 @@
-{% extends 'base.html' %}
+<html lang="en">
 
-{% block title %}Game{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boggle!</title>
+    <link rel="stylesheet" href="/static/app.css">
+</head>
 
-{% block content %}
-
-<section>
-    <h1>Boggle Game</h1>
-    <table>
-        {% for row in board %}
-        <tr>
-            {% for letter in row %}
-            <td>
-                <div class="square">{{letter}}</div>
-            </td>
-            {% endfor %}
-        </tr>
+<body>
+    <section>
+        {% for msg in get_flashed_messages() %}
+        <p>{{ msg }}</p>
         {% endfor %}
-    </table>
+    </section>
 
-    <form method="POST">
-        <label for="guess">Enter a guess:</label>
-        <input type="text" name="guess" id="guess" autofocus>
-        <button id="guessBtn">Enter Guess</button>
-    </form>
-</section>
+    <section>
+        <h1>Boggle Game</h1>
+        <table>
+            {% for row in board %}
+            <tr>
+                {% for letter in row %}
+                <td>
+                    <div class="square">{{letter}}</div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
 
-<script src="http://unpkg.com/jquery"></script>
-<script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
-<script src="/static/boggle.js"></script>
+        <form>
+            <label for="guess">Enter a guess:</label>
+            <input type="text" name="guess" id="guess" autofocus>
+            <button id="guessBtn">Enter Guess</button>
+        </form>
+    </section>
 
-{% endblock %}
+    <script src="http://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+    <script src="/static/boggle.js"></script>
+
+</body>
+
+</html>
