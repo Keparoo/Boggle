@@ -8,7 +8,9 @@ const handleGuess = async (e) => {
 	console.log(word);
 
 	const response = await axios.get('/check-word', { params: { word: word } });
-	console.log('response', response);
+	const result = response.data.result;
+	console.log(result);
+	// result = 'ok' or 'not-word' or 'not-on-board'
 };
 
 $body.on('click', '#guessBtn', handleGuess);
