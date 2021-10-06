@@ -1,13 +1,32 @@
 {% extends 'base.html' %}
 
-{% block title %}Survey{% endblock %}
+{% block title %}Game{% endblock %}
 
 {% block content %}
 
-<a href="/choose-survey">Choose Survey</a>
-
 <section>
-    <h1>Welcome to Boggle!</h1>
+    <h1>Boggle Game</h1>
+    <table>
+        {% for row in board %}
+        <tr>
+            {% for letter in row %}
+            <td>
+                <div class="square">{{letter}}</div>
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form method="POST">
+        <label for="guess">Enter a guess:</label>
+        <input type="text" name="guess" id="guess" autofocus>
+        <button id="guessBtn">Enter Guess</button>
+    </form>
 </section>
+
+<script src="http://unpkg.com/jquery"></script>
+<script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+<script src="/static/boggle.js"></script>
 
 {% endblock %}
