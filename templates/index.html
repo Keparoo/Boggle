@@ -16,7 +16,12 @@
     </section>
 
     <section>
-        <h1>Boggle Game - Score <span id="score"></span> High Score - <span id="high-score">{{high_score}}</span></h1>
+        <header id="header">
+            <h1>Boggle Game</h1>
+            <h2>Current Score: <span id="score"></span><br>High Score: <span id="high-score">{{high_score}}</span>
+            </h2>
+            <h3>Number of games played: <span id="num_plays">{{num_plays}}</span></h3>
+        </header>
         <table>
             {% for row in board %}
             <tr>
@@ -29,13 +34,15 @@
             {% endfor %}
         </table>
 
-        <form id="word-form">
-            <label for="guess">Enter a guess:</label>
-            <input type="text" name="guess" id="guess" autofocus>
-            <button id="guessBtn">Enter Guess</button>
-        </form>
+        <footer>
+            <form id="word-form">
+                <label for="guess">Enter a guess:</label>
+                <input type="text" name="guess" id="guess" autofocus>
+                <button id="guessBtn">Enter Guess</button>
+            </form>
+            <section id="user-message" class="hidden"></section>
+        </footer>
     </section>
-    <section id="user-message" class="hidden"></section>
 
     <script src="http://unpkg.com/jquery"></script>
     <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>

@@ -2,14 +2,49 @@ body {
 	background-color: lightskyblue;
 }
 
+#header {
+	width: 500px;
+	text-align: center;
+	margin: auto;
+}
+
+h1 {
+	font-size: 36px;
+}
+
+table {
+	margin: auto;
+}
+
+.square {
+	font-size: 48px;
+	width: 100px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 td {
 	width: 15px;
 	color: white;
 	background-color: blue;
 }
-.square {
-	font-size: 48px;
-	width: 100px;
-	height: 100px;
+
+#word-form {
+	margin-top: 20px;
+	font-size: 24px;
+	width: 500px;
 	text-align: center;
+}
+
+footer {
+	width: 500px;
+	margin: auto;
+}
+
+#user-message {
+	font-size: 36px;
+	text-align: center;
+	width: 500px;
 }

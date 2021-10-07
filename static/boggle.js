@@ -3,6 +3,7 @@ const $message = $('#user-message');
 const $score = $('#score');
 const $highscore = $('#high-score');
 const $form = $('#word-form');
+const gameDuration = 60000;
 let timeUp = false;
 let score = 0;
 
@@ -16,15 +17,13 @@ const handleGuess = async (e) => {
 	}
 
 	const word = $('#guess').val();
-	console.log(word);
 
 	const response = await axios.get('/check-word', { params: { word: word } });
 	const result = response.data.result;
-	console.log(result);
 
 	if (result === 'ok') {
 		const wordValue = word.length;
-		$message.text(`You found a word! ${wordValue} points.`);
+		$message.text(`${word} is worth ${wordValue} points.`);
 		score += wordValue;
 		$score.text(score);
 	} else if (result === 'not-word') {
@@ -33,20 +32,18 @@ const handleGuess = async (e) => {
 		$message.text(`${word} is not on the board.`);
 	}
 	$form.trigger('reset');
-
-	// result = 'ok' or 'not-word' or 'not-on-board'
 };
 
 const gameOver = async () => {
+	console.debug('Game Over');
+
 	timeUp = true;
-	console.log('Game Over');
 	$message.text(`Game over! Your score is ${score}`);
 	const response = await axios.post('/game-over', { score: score });
-	console.log(response);
 	$highscore.text(response.data.high_score);
 };
 
-setTimeout(gameOver, 48000);
+setTimeout(gameOver, gameDuration);
 
 $body.on('click', '#guessBtn', handleGuess);
 
