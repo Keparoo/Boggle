@@ -36,13 +36,15 @@ const handleGuess = async (e) => {
 	// result = 'ok' or 'not-word' or 'not-on-board'
 };
 
-const gameOver = () => {
+const gameOver = async () => {
 	timeUp = true;
 	console.log('Game Over');
 	$message.text(`Game over! Your score is ${score}`);
+	const response = await axios.post('/game-over', { score: score });
+	console.log(response);
 };
 
-setTimeout(gameOver, 60000);
+setTimeout(gameOver, 24000);
 
 $body.on('click', '#guessBtn', handleGuess);
 
