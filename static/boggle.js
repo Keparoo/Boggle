@@ -1,6 +1,7 @@
 const $body = $('body');
 const $message = $('#user-message');
 const $score = $('#score');
+const $highscore = $('#high-score');
 const $form = $('#word-form');
 let timeUp = false;
 let score = 0;
@@ -42,9 +43,10 @@ const gameOver = async () => {
 	$message.text(`Game over! Your score is ${score}`);
 	const response = await axios.post('/game-over', { score: score });
 	console.log(response);
+	$highscore.text(response.data.high_score);
 };
 
-setTimeout(gameOver, 24000);
+setTimeout(gameOver, 48000);
 
 $body.on('click', '#guessBtn', handleGuess);
 
