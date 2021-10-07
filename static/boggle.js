@@ -7,6 +7,8 @@ const gameDuration = 60000;
 let timeUp = false;
 let score = 0;
 
+let wordsGuessed = new Set();
+
 const handleGuess = async (e) => {
 	e.preventDefault();
 	console.debug('handleGuess');
@@ -22,10 +24,17 @@ const handleGuess = async (e) => {
 	const result = response.data.result;
 
 	if (result === 'ok') {
-		const wordValue = word.length;
-		$message.text(`${word} is worth ${wordValue} points.`);
-		score += wordValue;
-		$score.text(score);
+		if (wordsGuessed.has(word)) {
+			console.debug('Duplicate word');
+			$message.text(`You already guessed ${word}!`);
+			return;
+		} else {
+			const wordValue = word.length;
+			$message.text(`${word} is worth ${wordValue} points.`);
+			score += wordValue;
+			$score.text(score);
+			wordsGuessed.add(word);
+		}
 	} else if (result === 'not-word') {
 		$message.text(`${word} is not a word.`);
 	} else {
