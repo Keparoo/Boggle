@@ -23,17 +23,22 @@ const handleGuess = async (e) => {
 	const response = await axios.get('/check-word', { params: { word: word } });
 	const result = response.data.result;
 
+	const updateScore = (word) => {
+		const wordValue = word.length;
+		$message.text(`${word} is worth ${wordValue} points.`);
+		score += wordValue;
+		$score.text(score);
+		wordsGuessed.add(word);
+	};
+
 	if (result === 'ok') {
 		if (wordsGuessed.has(word)) {
 			console.debug('Duplicate word');
 			$message.text(`You already guessed ${word}!`);
+			$form.trigger('reset');
 			return;
 		} else {
-			const wordValue = word.length;
-			$message.text(`${word} is worth ${wordValue} points.`);
-			score += wordValue;
-			$score.text(score);
-			wordsGuessed.add(word);
+			updateScore(word);
 		}
 	} else if (result === 'not-word') {
 		$message.text(`${word} is not a word.`);
