@@ -41,10 +41,18 @@ td {
 footer {
 	width: 500px;
 	margin: auto;
+	text-align: center;
 }
 
 #user-message {
 	font-size: 36px;
-	text-align: center;
 	width: 500px;
+}
+
+.hidden {
+	display: none;
+}
+
+#play-again {
+	margin-top: 20px;
 }
