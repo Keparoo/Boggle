@@ -38,5 +38,6 @@ def set_score():
 
     session['high_score'] = max(score, high_score)
     session['num_plays'] = num_plays + 1
+    boggle_game.words_guessed = set() # Clear words_guessed
 
     return jsonify({"high_score": session['high_score'], "num_plays": session['num_plays']})

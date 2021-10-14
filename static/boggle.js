@@ -20,20 +20,15 @@ const updateScore = (word) => {
 
 const updateUI = (result, word) => {
 	if (result === 'ok') {
-		// Check to see if word has been already guessed
-		if (wordsGuessed.has(word)) {
-			console.debug('Duplicate word');
-			$message.text(`You already guessed ${word}!`);
-			$form.trigger('reset');
-			return;
-		} else {
-			updateScore(word);
-		}
+		updateScore(word);
+	} else if (result === 'word-guessed') {
+		$message.text(`You already guessed ${word}!`);
 	} else if (result === 'not-word') {
 		$message.text(`${word} is not a word.`);
 	} else {
 		$message.text(`${word} is not on the board.`);
 	}
+	$form.trigger('reset');
 };
 
 const handleGuess = async (e) => {
