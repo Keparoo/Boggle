@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, session, jsonify
+from flask import Flask, request, render_template, session, jsonify
 from boggle import Boggle
 
 app = Flask(__name__)
@@ -38,7 +38,5 @@ def set_score():
 
     session['high_score'] = max(score, high_score)
     session['num_plays'] = num_plays + 1
-
-    print(f'high score: {high_score}, num plays: {num_plays}')
 
     return jsonify({"high_score": session['high_score'], "num_plays": session['num_plays']})
